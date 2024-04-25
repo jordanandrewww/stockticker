@@ -19,11 +19,11 @@ const Company = mongoose.model('PublicCompanies', companySchema);
 
 // view 1: home
 app.get('/', (req, res) => {
-    res.send(`
-        <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
-            console.log("hello");
-        </form>
-    `);
+    console.log("hello");
+    // res.send(`
+    //     <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
+    //     </form>
+    // `);
 });
 
 // view 2: process
