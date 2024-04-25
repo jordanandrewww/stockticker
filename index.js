@@ -10,9 +10,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // defines schema and model
 const companySchema = new mongoose.Schema({
-    name: String,
-    ticker: String,
-    price: Number
+    Company: String,
+    Ticker: String,
+    Price: Number
 });
 
 const Company = mongoose.model('PublicCompanies', companySchema);
@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
             <label for="searchInput">Search:</label>
             <input type="text" id="searchInput" name="searchInput">
             <br>
-            <input type="radio" id="tickerRadio" name="searchType" value="ticker">
+            <input type="radio" id="tickerRadio" name="searchType" value="Ticker">
             <label for="tickerRadio">Ticker Symbol</label>
-            <input type="radio" id="companyRadio" name="searchType" value="company">
+            <input type="radio" id="companyRadio" name="searchType" value="Company">
             <label for="companyRadio">Company Name</label>
             <br>
             <button type="submit">Search</button>
@@ -43,10 +43,10 @@ app.get('/process', async (req, res) => {
     console.log('Search Type:', searchType);
 
     let results = [];
-    if (searchType === "ticker") {
-        results = await Company.find({ ticker: searchInput });
-    } else if (searchType === "company") {
-        results = await Company.find({ name: { $regex: searchInput, $options: 'i' } });
+    if (searchType === "Ticker") {
+        results = await Company.find({ Ticker: searchInput });
+    } else if (searchType === "Company") {
+        results = await Company.find({ Company: { $regex: searchInput, $options: 'i' } });
     }
 
     console.log(results); // displays data in the console
