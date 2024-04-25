@@ -35,27 +35,27 @@ app.get('/', (req, res) => {
 });
 
 // view 2: process
-// app.get('/process', async (req, res) => {
-//     const searchInput = req.query.searchInput;
-//     const searchType = req.query.searchType;
+app.get('/process', async (req, res) => {
+    const searchInput = req.query.searchInput;
+    const searchType = req.query.searchType;
 
-//     let results = [];
-//     if (searchType === "ticker") {
-//         results = await Company.find({ ticker: searchInput });
-//     } else if (searchType === "company") {
-//         results = await Company.find({ name: { $regex: searchInput, $options: 'i' } });
-//     }
+    let results = [];
+    if (searchType === "ticker") {
+        results = await Company.find({ ticker: searchInput });
+    } else if (searchType === "company") {
+        results = await Company.find({ name: { $regex: searchInput, $options: 'i' } });
+    }
 
-//     console.log(results); // displays data in the console
+    console.log(results); // displays data in the console
 
-//     // displays the data also on the web page
-//     res.send(`
-//         <h1>Search Results</h1>
-//         <ul>
-//             ${results.map(company => `<li>Name: ${company.name}, Ticker: ${company.ticker}, Price: ${company.price}</li>`).join('')}
-//         </ul>
-//     `);
-// });
+    // displays the data also on the web page
+    res.send(`
+        <h1>Search Results</h1>
+        <ul>
+            ${results.map(company => `<li>Name: ${company.name}, Ticker: ${company.ticker}, Price: ${company.price}</li>`).join('')}
+        </ul>
+    `);
+});
 
 // starts server
 const PORT = process.env.PORT || 3000;
