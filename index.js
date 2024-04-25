@@ -44,8 +44,9 @@ app.get('/process', async (req, res) => {
 
     let results = [];
     if (searchType === "ticker") {
-        results = await Company.find({ ticker: searchInput });
+        results = await Company.find({ ticker: "AAPL", });
     } else if (searchType === "company") {
+        console.log("slay");
         results = await Company.find({ name: { $regex: searchInput, $options: 'i' } });
     }
 
