@@ -1,4 +1,4 @@
-sconst express = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -19,11 +19,19 @@ const Company = mongoose.model('PublicCompanies', companySchema);
 
 // view 1: home
 app.get('/', (req, res) => {
-    console.log("hello");
-    // res.send(`
-    //     <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
-    //     </form>
-    // `);
+    res.send(`
+        <form action="/process" method="GET">
+            <label for="searchInput">Search:</label>
+            <input type="text" id="searchInput" name="searchInput">
+            <br>
+            <input type="radio" id="tickerRadio" name="searchType" value="ticker">
+            <label for="tickerRadio">Ticker Symbol</label>
+            <input type="radio" id="companyRadio" name="searchType" value="company">
+            <label for="companyRadio">Company Name</label>
+            <br>
+            <button type="submit">Search</button>
+        </form>
+    `);
 });
 
 // view 2: process
