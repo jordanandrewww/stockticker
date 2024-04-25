@@ -4,20 +4,20 @@ const mongoose = require('mongoose');
 const app = express();
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://jordanandrewww:db123@mycluster.zb2k6aw.mongodb.net/?retryWrites=true&w=majority&appName=mycluster');
+mongoose.connect('mongodb+srv://jordanandrewww:db123@mycluster.zb2k6aw.mongodb.net/?retryWrites=true&w=majority&appName=mycluster', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// defines schema and model
+// Define schema and model
 const companySchema = new mongoose.Schema({
     Company: String,
     Ticker: String,
     Price: Number
 });
 
-const Company = mongoose.model('PublicCompanies', companySchema);
+const Company = mongoose.model('Company', companySchema);
 
-// view 1: home
+// View 1: Home
 app.get('/', (req, res) => {
     res.send(`
         <form action="/process" method="GET">
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     `);
 });
 
-// view 2: process
+// View 2: Process
 app.get('/process', async (req, res) => {
     const searchInput = req.query.searchInput;
     const searchType = req.query.searchType;
@@ -49,18 +49,18 @@ app.get('/process', async (req, res) => {
         results = await Company.find({ Company: { $regex: searchInput, $options: 'i' } });
     }
 
-    console.log(results); // displays data in the console
+    console.log(results); // Display data in the console
 
-    // displays the data also on the web page
+    // Display the data on the web page
     res.send(`
         <h1>Search Results</h1>
         <ul>
-            ${results.map(company => `<li>Name: ${company.name}, Ticker: ${company.ticker}, Price: ${company.price}</li>`).join('')}
+            ${results.map(company => `<li>Name: ${company.Company}, Ticker: ${company.Ticker}, Price: ${company.Price}</li>`).join('')}
         </ul>
     `);
 });
 
-// starts server
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
