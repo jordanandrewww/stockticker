@@ -39,6 +39,9 @@ app.get('/process', async (req, res) => {
     const searchInput = req.query.searchInput;
     const searchType = req.query.searchType;
 
+    console.log('Search Input:', searchInput);
+    console.log('Search Type:', searchType);
+
     let results = [];
     if (searchType === "ticker") {
         results = await Company.find({ ticker: searchInput });
