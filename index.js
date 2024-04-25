@@ -20,16 +20,8 @@ const Company = mongoose.model('PublicCompanies', companySchema);
 // view 1: home
 app.get('/', (req, res) => {
     res.send(`
-        <form action="/process/https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/" method="GET">
-            <label for="searchInput">Search:</label>
-            <input type="text" id="searchInput" name="searchInput">
-            <br>
-            <input type="radio" id="tickerRadio" name="searchType" value="ticker">
-            <label for="tickerRadio">Ticker Symbol</label>
-            <input type="radio" id="companyRadio" name="searchType" value="company">
-            <label for="companyRadio">Company Name</label>
-            <br>
-            <button type="submit">Search</button>
+        <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
+            console.log("hello");
         </form>
     `);
 });
