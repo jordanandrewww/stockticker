@@ -20,7 +20,7 @@ const Company = mongoose.model('PublicCompanies', companySchema);
 // view 1: home
 app.get('/', (req, res) => {
     res.send(`
-        <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
+        <form action="/process/https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/" method="GET">
             <label for="searchInput">Search:</label>
             <input type="text" id="searchInput" name="searchInput">
             <br>
