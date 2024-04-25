@@ -1,4 +1,4 @@
-const express = require('express');
+sconst express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -20,7 +20,7 @@ const Company = mongoose.model('PublicCompanies', companySchema);
 // view 1: home
 app.get('/', (req, res) => {
     res.send(`
-        <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/" method="GET">
+        <form action="https://jordanandrew-stockticker-0ae39ecb6ad3.herokuapp.com/process" method="GET">
             <label for="searchInput">Search:</label>
             <input type="text" id="searchInput" name="searchInput">
             <br>
